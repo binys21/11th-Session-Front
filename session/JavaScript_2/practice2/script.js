@@ -1,3 +1,11 @@
+//git status-> 현재 branch 확인 
+//git add .-> git commit -m"커밋메시지"
+//git push origin main git status 
+//변동 사항이 없다면 
+//git pull upstream main 로 가져옴 
+
+
+
 //금액 변수 설정 
 var coin = 0;
 // 1. span 태그를 생성하고 변수 newSpan에 저장
