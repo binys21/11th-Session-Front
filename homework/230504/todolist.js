@@ -5,7 +5,12 @@ const btn = document.querySelector(".show-input");
 
 const init = () => {
   form.addEventListener("submit", addTodoItem);
-  btn.addEventListener("click", displayForm);
+  btn.addEventListener("click", displayForm, changeBtnName);
+};
+
+//버튼 클릭 <로 바뀌는 함수 구현
+const changeBtnName = () => {
+  btn.innerText = "새이름";
 };
 
 const displayForm = () => {
@@ -17,7 +22,7 @@ const displayForm = () => {
 //할 일 추가 addTodoItem함수
 const addTodoItem = () => {
   event.preventDefault();
-  const todoContent = document.querySelector(".todo-input").value;
+  const todoContent = document.querySelector(".todo-input").value; //인풋폼의 값을 선택자로 가져옴
   if (todoContent) printTodoItem(todoContent);
 }; //todo-input의 value를 todoContent에 대입
 
@@ -29,8 +34,10 @@ const printTodoItem = (text) => {
   todoText.innerText = text;
   todoText.className = "todo-item-text";
   todoText.addEventListener("click", toggleToDone);
+
   //todo 삭제 버튼
-  todoDel.innerText = "삭제";
+  todoDel.innerHTML =
+    '<i class="fa-solid fa-trash" style="color: #939495;"></i>';
   todoDel.className = "todo-delete-button";
   todoDel.addEventListener("click", deleteTodoItem);
 
@@ -59,19 +66,27 @@ const printDoneItem = (text) => {
   const doneItem = document.createElement("li");
   const doneText = document.createElement("span");
   const doneDel = document.createElement("button");
+  const callback = document.createElement("button");
 
   doneText.innerText = text;
   doneText.className = "done-item-text";
-  doneText.addEventListener("click", toggleDoneToDo);
+  // doneText.addEventListener("click", toggleDoneToDo);
 
-  doneDel.innerText = "삭제";
+  doneDel.innerHTML =
+    '<i class="fa-solid fa-trash" style="color: #939495;"></i>';
   doneDel.className = "done-delete-button";
   doneDel.addEventListener("click", deleteDoneItem);
+
+  callback.innerHTML =
+    '<i class="fa-solid fa-rotate" style="color: #808080"></i>';
+  callback.className = "back";
+  callback.addEventListener("click", toggleDoneToDo);
 
   //li에 item (span, button) 추가
   doneItem.className = "done-list-item";
   doneItem.appendChild(doneText);
   doneItem.appendChild(doneDel);
+  doneItem.appendChild(callback);
 
   //ul에 li를 자식으로 추가
   document.querySelector(".done-list").appendChild(doneItem);
