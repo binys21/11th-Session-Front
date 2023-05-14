@@ -5,23 +5,32 @@ const btn = document.querySelector(".show-input");
 
 const init = () => {
   form.addEventListener("submit", addTodoItem);
-  btn.addEventListener("click", displayForm, changeBtnName);
+  btn.addEventListener("click", displayForm);
 };
 
-//버튼 클릭 <로 바뀌는 함수 구현
+//버튼 클릭하면 <로 바뀌는 함수
 const changeBtnName = () => {
-  btn.innerText = "새이름";
+  btn.innerText = "<";
 };
 
+const returnBtnName = () => {
+  btn.innerText = ">";
+};
+
+//인풋 보여주는 함수
 const displayForm = () => {
-  form.style.display === "none"
-    ? (form.style.display = "block")
-    : (form.style.display = "none");
+  if (form.style.display === "none") {
+    form.style.display = "block";
+    document.getElementsByClassName("show-input").innerText = "<";
+  } else {
+    form.style.display = "none";
+    document.getElementsByClassName("show-input").innerText = ">";
+  }
 };
 
 //할 일 추가 addTodoItem함수
 const addTodoItem = () => {
-  event.preventDefault();
+  event.preventDefault(); //submit 시 새로고침 방지
   const todoContent = document.querySelector(".todo-input").value; //인풋폼의 값을 선택자로 가져옴
   if (todoContent) printTodoItem(todoContent);
 }; //todo-input의 value를 todoContent에 대입
@@ -30,7 +39,7 @@ const printTodoItem = (text) => {
   const todoItem = document.createElement("li");
   const todoText = document.createElement("span"); //새로운 할 일은 span태그
   const todoDel = document.createElement("button");
-
+  //todo내용
   todoText.innerText = text;
   todoText.className = "todo-item-text";
   todoText.addEventListener("click", toggleToDone);
@@ -68,9 +77,11 @@ const printDoneItem = (text) => {
   const doneDel = document.createElement("button");
   const callback = document.createElement("button");
 
+  //li태그에 id추가
+  doneItem.setAttribute("id", "done");
+
   doneText.innerText = text;
   doneText.className = "done-item-text";
-  // doneText.addEventListener("click", toggleDoneToDo);
 
   doneDel.innerHTML =
     '<i class="fa-solid fa-trash" style="color: #939495;"></i>';

@@ -5,10 +5,9 @@ li {
   list-style-image: url("../230504/circle.png");
 }
 
-/* .delbtn {
-  border: none;
-  background-color: transparent;
-} */
+#done {
+  list-style-image: url("../230504/check-circle.png");
+}
 
 button {
   border: none;
