@@ -19,12 +19,12 @@ const returnBtnName = () => {
 
 //인풋 보여주는 함수
 const displayForm = () => {
-  if (form.style.display === "none") {
+  if (form.style.display === "none" || form.style.display === "") {
     form.style.display = "block";
-    document.getElementsByClassName("show-input").innerText = "<";
+    btn.addEventListener("click", changeBtnName);
   } else {
     form.style.display = "none";
-    document.getElementsByClassName("show-input").innerText = ">";
+    btn.addEventListener("click", returnBtnName);
   }
 };
 
@@ -41,7 +41,7 @@ const printTodoItem = (text) => {
   const todoDel = document.createElement("button");
   //todo내용
   todoText.innerText = text;
-  todoText.className = "todo-item-text";
+  todoText.id = "todo-item-text";
   todoText.addEventListener("click", toggleToDone);
 
   //todo 삭제 버튼
@@ -60,11 +60,6 @@ const printTodoItem = (text) => {
   //할일 추가 후 입력창 초기화
 };
 
-const deleteTodoItem = (e) => {
-  const target = e.target.parentNode; //삭제 버튼의 부모 요소까지 삭제해야함
-  document.querySelector(".todo-list").removeChild(target);
-};
-
 const toggleToDone = (e) => {
   deleteTodoItem(e); //한 일 삭제
   printDoneItem(e.target.innerText); //끝낸 일에 다시 출력
@@ -81,7 +76,7 @@ const printDoneItem = (text) => {
   doneItem.setAttribute("id", "done");
 
   doneText.innerText = text;
-  doneText.className = "done-item-text";
+  doneText.id = "done-text";
 
   doneDel.innerHTML =
     '<i class="fa-solid fa-trash" style="color: #939495;"></i>';
@@ -103,16 +98,26 @@ const printDoneItem = (text) => {
   document.querySelector(".done-list").appendChild(doneItem);
 };
 
+const toggleDoneToDo = (e) => {
+  //끝낸 일에 있는 일을 다시 할 일로
+  // const target=
+  // printTodoItem(e.target.innerText);
+  // deleteDoneItem(e);
+  // console.log(e.target);
+  const target = document.getElementById("done-text").innerText;
+  deleteDoneItem(e);
+  printTodoItem(target);
+};
+
 //끝낸 일 삭제
 const deleteDoneItem = (e) => {
   const target = e.target.parentNode; //삭제버튼의 부모 요소 li
   document.querySelector(".done-list").removeChild(target);
 };
 
-const toggleDoneToDo = (e) => {
-  //끝낸 일에 있는 일을 다시 할 일로
-  deleteDoneItem(e);
-  printTodoItem(e.target.innerText);
+const deleteTodoItem = (e) => {
+  const target = e.target.parentNode; //삭제 버튼의 부모 요소까지 삭제해야함
+  document.querySelector(".todo-list").removeChild(target);
 };
 
 //시작 함수
