@@ -39,7 +39,7 @@ const Comment = () => {
 
     // 새로운 댓글 작성 시 댓글이 보이도록 가장 아래로 스크롤
     // 댓글이 새로 추가되었는지 아닌지 여부를 저장
-    const [isAdded, setIsAdded] = useState(false);
+    const [isAdded, setIsAdded] = useState(false); 
     // trigger가 변하면 댓글이 추가된건지 아닌지 검사하고 스크롤을 아래로 내릴 예정
     const [trigger, setTrigger] = useState(Date.now());
     // 가장 마지막 댓글 아래에 div를 추가하고 useRef로 선택
@@ -53,7 +53,7 @@ const Comment = () => {
             setComments([...comments, newComment]);
             // 다음 댓글도 달아야하므로 새로운 댓글은 초기화
             setNewComment({
-                id: comments.length + 1,
+                id: comments.length + 1, 
                 nickname: '아기사자',
                 content: '',
                 created_at: dateString,
