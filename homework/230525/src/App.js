@@ -38,9 +38,9 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				{/* 홈 화면에서 게시글을 보여줘야 하므로 props로 전달 */}
-				<Route path="/" element={<HomePage />} />
+				<Route path="/" element={<HomePage posts={posts}/>} />
 				{/* 작성 화면에서 게시글 배열에 새로운 게시글을 추가해야 하므로 props로 전달 */}
-				<Route path="/create" element={<CreatePage />} />
+				<Route path="/create" element={<CreatePage posts={posts} setPosts={setPosts} />} />
 				<Route path="/modal" element={<ModalPage />} />
 				{/* 추가 기능 (선택) - 각 게시글 상세 페이지 */}
 			</Routes>

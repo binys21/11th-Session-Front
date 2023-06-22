@@ -10,11 +10,11 @@ const init = () => {
 
 //버튼 클릭하면 <로 바뀌는 함수
 const changeBtnName = () => {
-  btn.innerText = "<";
+  btn.innerText = ">";
 };
 
 const returnBtnName = () => {
-  btn.innerText = ">";
+  btn.innerText = "<";
 };
 
 //인풋 보여주는 함수
@@ -99,11 +99,7 @@ const printDoneItem = (text) => {
 };
 
 const toggleDoneToDo = (e) => {
-  //끝낸 일에 있는 일을 다시 할 일로
-  // const target=
-  // printTodoItem(e.target.innerText);
-  // deleteDoneItem(e);
-  // console.log(e.target);
+  //끝낸일을 다시 할 일로
   const target = document.getElementById("done-text").innerText;
   deleteDoneItem(e);
   printTodoItem(target);
