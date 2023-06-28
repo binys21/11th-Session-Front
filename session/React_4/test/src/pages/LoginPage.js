@@ -1,7 +1,12 @@
+//loginpage
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import { initUser,setUser } from '../redux/userSlice';
+=======
+import { setUser } from "../redux/userSlice";
+>>>>>>> 5f203ca49e4bcc0ca53c9ce0ae58fd33448dac41
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
@@ -13,11 +18,19 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   // 정보 저장 함수
   const submintAccounts = () => {
+<<<<<<< HEAD
     // 문제 (2) dispatch 로 state qusrud
     dispatch(setUser({
       userID:ID,
       userName:name,
     })
+=======
+    dispatch(
+      setUser({
+        userID: ID,
+        userName: name,
+      })
+>>>>>>> 5f203ca49e4bcc0ca53c9ce0ae58fd33448dac41
     );
     navigate("/mypage");
   };
